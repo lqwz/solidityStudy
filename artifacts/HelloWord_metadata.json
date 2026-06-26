@@ -6,6 +6,109 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "phrase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "addInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "phrase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "addInfoMapping",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getInfoMapping",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "infoList",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "phrase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "sayHello",
 				"outputs": [
@@ -73,11 +176,11 @@
 	},
 	"sources": {
 		"test/test.sol": {
-			"keccak256": "0xfb4c17fd4f908034f1ac3ba211c49112300afafed36dd0f6226a0a32a516fbff",
+			"keccak256": "0x045eacef505ade9bf3276d6c1641c9d52e06b5d0fce5a3cdc40c5b786e0b2763",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3789739275b59fda9c26213f928b2bd34e9eada40b9b2cb7e85895e898d2936c",
-				"dweb:/ipfs/QmUfSEB1QMJ1zDfzuEBA4r632C8K46sjE8mCBKENeoRV5t"
+				"bzz-raw://5d9182898269f0bbeba1f32b96d716a53c1e012693d675994b9e39bc1b1e65c6",
+				"dweb:/ipfs/QmZhDUatPSz17cgmYD3Z7VKmCQtnAg5VvusMzmSFcWj7bK"
 			]
 		}
 	},

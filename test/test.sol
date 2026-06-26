@@ -25,12 +25,49 @@ contract HelloWord {
     //方法 只计算
     function addInfo(string memory str) internal pure returns (string memory) {
         // return string.concat(unicode"中文", str);
-        return string.concat("Hello", str);
+        return string.concat(str, " ---from WEEK");
         // return string(abi.encodePacked("123",str));
     }
 
     //方法 调用内部函数
     function sayHelloAddInfo() public view returns (string memory) {
         return addInfo(stringVar);
+    }
+    //结构体
+    struct Info {
+        string phrase;
+        uint256 id;
+        address sender;
+    }
+    //数组
+    Info[] public infoList;
+    //方法 结构体写入
+    function addInfo(string memory phrase, uint256 _id) public {
+        Info memory info = Info(phrase, _id, msg.sender);
+        infoList.push(info);
+    }
+    //方法 结构体读取
+    function getInfo(uint256 _id) public view returns (string memory) {
+        for (uint256 i = 0; i < infoList.length; i++) {
+            if (infoList[i].id == _id) {
+                return addInfo(infoList[i].phrase);
+            }
+        }
+        return addInfo(stringVar);
+    }
+
+    //mapping
+    mapping(uint256 => Info) infoMapping;
+    //方法 mapping写入
+    function addInfoMapping(string memory phrase, uint256 _id) public {
+        Info memory info = Info(phrase, _id, msg.sender);
+        infoMapping[_id] = info;
+    }
+    //方法 mapping读取
+    function getInfoMapping(uint256 _id) public view returns (string memory) {
+        if (infoMapping[_id].sender == address(0x0)) {
+            return unicode"没有找到";
+        }
+        return infoMapping[_id].phrase;
     }
 }
