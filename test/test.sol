@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.34;
 
-contract HelloWord {
+contract HelloWorld {
     //基础数据类型
     bool boolVar_1 = false;
     bool boolVar_2 = true;

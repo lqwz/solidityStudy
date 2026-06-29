@@ -1,0 +1,87 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"withdraw()": {
+					"notice": "提现函数：将合约中属于调用者的余额提取到调用者账户"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"test/test2.sol": "WithdrawContract"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"test/test2.sol": {
+			"keccak256": "0xf27b0fbafbe1018d48ce9e0ce0c480a9b2a9c1f3ce8c877a6d09950397680829",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2d647a2585943e3005adee589b298ae28ec6fa58fb5e2a80464a7a384f90459a",
+				"dweb:/ipfs/Qmbvk5K6DgE1k9mJMjKFxjC1t6w4oUfp2nwNcTRfSoyatP"
+			]
+		}
+	},
+	"version": 1
+}

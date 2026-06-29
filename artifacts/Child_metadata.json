@@ -1,0 +1,73 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "a",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "addOne",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "addTwo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"test/继承.sol": "Child"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"test/继承.sol": {
+			"keccak256": "0x134a6cb8f532f9f5239c98a9b54c9af88fd4dedae51b31621030ad96a4cd5b1a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3fb9819912ab10deeaca10ac731e59d0fac2d31ad84020ef9567ed6a62de7b5c",
+				"dweb:/ipfs/QmW8vyHr8Ca2FiTvF1gW2JAmTfyG8N7Jmgzh6d8RekH1Wz"
+			]
+		}
+	},
+	"version": 1
+}

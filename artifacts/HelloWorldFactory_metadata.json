@@ -1,0 +1,98 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_index",
+						"type": "uint256"
+					}
+				],
+				"name": "callHelloWorldSayHello",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "newStr",
+						"type": "string"
+					}
+				],
+				"name": "callHelloWorldSetHello",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "createHelloWorld",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"test/HelloWorldFactory.sol": "HelloWorldFactory"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"test/HelloWorldFactory.sol": {
+			"keccak256": "0xcfeb20c999e5829d30bbde34793e61e5596169e6776f4c04ec1ce8f4a1b2bb9a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d978af6bca190ead3019f14ff82300591af418eb20e374082c761c5aceea449e",
+				"dweb:/ipfs/QmXoTzg9AU4JTLB2HfkWadbKWhGa9gqn4cVR5naFBLpJuA"
+			]
+		},
+		"test/test.sol": {
+			"keccak256": "0x68eb3e7d7247239fb86551de66eb1b5aeb5bdbeb548fc1d5c521ba8c0f37a1d9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://62ef903eed8f173107d4144d5054044fed01edd7ea8785b262231b6b264e2228",
+				"dweb:/ipfs/QmXiJEXqkMYZhSvoyxQtcNPdgasUNLorLNEFd3RgvZBq8P"
+			]
+		}
+	},
+	"version": 1
+}
