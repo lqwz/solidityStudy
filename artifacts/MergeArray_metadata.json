@@ -1,0 +1,94 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "dataA",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "dataB",
+						"type": "uint256[]"
+					}
+				],
+				"name": "processArray",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "dataA",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "dataB",
+						"type": "uint256[]"
+					}
+				],
+				"name": "processArray2",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"homework01/5/MergeArray.sol": "MergeArray"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"homework01/5/MergeArray.sol": {
+			"keccak256": "0xbdc73ed62edfce3616bcfad478633b170b4dfc9082e168be66b6eee5a598fa9f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7bab01ac1e48def8db36ce671d0d814e041ab30aacdc649ff9cba88a373a0138",
+				"dweb:/ipfs/QmQQxLZ4hJo6uErFiWbeFp6EDhs65VWWv3UgvrQ1L39TeC"
+			]
+		}
+	},
+	"version": 1
+}

@@ -90,14 +90,6 @@
       }
     }
   },
-  "test/test2.sol": {
-    "__sources__": {
-      "test/test2.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity^0.8.0;\r\n//ai生成的\r\ncontract WithdrawContract {\r\n    // 记录谁存了多少钱（可选，用于权限控制或记账）\r\n    mapping(address => uint256) public balances;\r\n\r\n    // 存款函数：允许用户向合约发送 ETH\r\n    function deposit() public payable {\r\n        require(msg.value > 0, \"Must send some ETH\");\r\n        balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    /**\r\n     * @notice 提现函数：将合约中属于调用者的余额提取到调用者账户\r\n     */\r\n    function withdraw() public {\r\n        uint256 amount = balances[msg.sender];\r\n        require(amount > 0, \"No balance to withdraw\");\r\n\r\n        // 先更新状态，再执行转账（遵循 Checks-Effects-Interactions 模式，防止重入攻击）\r\n        balances[msg.sender] = 0;\r\n\r\n        // 使用 call 进行转账\r\n        (bool success, ) = payable(msg.sender).call{value: amount}(\"\");\r\n        require(success, \"Withdrawal failed\");\r\n    }\r\n    \r\n    // 允许合约直接接收 ETH\r\n    receive() external payable {}\r\n}\r\n",
-        "file": "test/test2.sol"
-      }
-    }
-  },
   "test/HelloWorldFactory.sol": {
     "./test.sol": "test/test.sol",
     "__sources__": {
@@ -111,6 +103,22 @@
       }
     }
   },
+  "test/test.sol": {
+    "__sources__": {
+      "test/test.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.34;\n\ncontract HelloWorld {\n    //基础数据类型\n    bool boolVar_1 = false;\n    bool boolVar_2 = true;\n\n    uint256 uintVar = 1;\n    int256 intVar = -1;\n\n    bytes23 bytesVar = \"Hello world\";\n    string stringVar = \"Hello word\";\n\n    address addressVar = 0x3465b9ED06fd366C23481404601d4dA1B4b679B5;\n\n    //方法 只读\n    function sayHello() public view returns (string memory) {\n        return stringVar;\n    }\n    //方法 写\n    function setHello(string memory newStr) public {\n        stringVar = newStr;\n    }\n    //方法 只计算\n    function addInfo(string memory str) internal pure returns (string memory) {\n        // return string.concat(unicode\"中文\", str);\n        return string.concat(str, \" ---from WEEK\");\n        // return string(abi.encodePacked(\"123\",str));\n    }\n\n    //方法 调用内部函数\n    function sayHelloAddInfo() public view returns (string memory) {\n        return addInfo(stringVar);\n    }\n    //结构体\n    struct Info {\n        string phrase;\n        uint256 id;\n        address sender;\n    }\n    //数组\n    Info[] public infoList;\n    //方法 结构体写入\n    function addInfo(string memory phrase, uint256 _id) public {\n        Info memory info = Info(phrase, _id, msg.sender);\n        infoList.push(info);\n    }\n    //方法 结构体读取\n    function getInfo(uint256 _id) public view returns (string memory) {\n        for (uint256 i = 0; i < infoList.length; i++) {\n            if (infoList[i].id == _id) {\n                return addInfo(infoList[i].phrase);\n            }\n        }\n        return addInfo(stringVar);\n    }\n\n    //mapping\n    mapping(uint256 => Info) infoMapping;\n    //方法 mapping写入\n    function addInfoMapping(string memory phrase, uint256 _id) public {\n        Info memory info = Info(phrase, _id, msg.sender);\n        infoMapping[_id] = info;\n    }\n    //方法 mapping读取\n    function getInfoMapping(uint256 _id) public view returns (string memory) {\n        if (infoMapping[_id].sender == address(0x0)) {\n            return unicode\"没有找到\";\n        }\n        return infoMapping[_id].phrase;\n    }\n}\n",
+        "file": "test/test.sol"
+      }
+    }
+  },
+  "test/test2.sol": {
+    "__sources__": {
+      "test/test2.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity^0.8.0;\r\n//ai生成的\r\ncontract WithdrawContract {\r\n    // 记录谁存了多少钱（可选，用于权限控制或记账）\r\n    mapping(address => uint256) public balances;\r\n\r\n    // 存款函数：允许用户向合约发送 ETH\r\n    function deposit() public payable {\r\n        require(msg.value > 0, \"Must send some ETH\");\r\n        balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    /**\r\n     * @notice 提现函数：将合约中属于调用者的余额提取到调用者账户\r\n     */\r\n    function withdraw() public {\r\n        uint256 amount = balances[msg.sender];\r\n        require(amount > 0, \"No balance to withdraw\");\r\n\r\n        // 先更新状态，再执行转账（遵循 Checks-Effects-Interactions 模式，防止重入攻击）\r\n        balances[msg.sender] = 0;\r\n\r\n        // 使用 call 进行转账\r\n        (bool success, ) = payable(msg.sender).call{value: amount}(\"\");\r\n        require(success, \"Withdrawal failed\");\r\n    }\r\n    \r\n    // 允许合约直接接收 ETH\r\n    receive() external payable {}\r\n}\r\n",
+        "file": "test/test2.sol"
+      }
+    }
+  },
   "test/继承.sol": {
     "__sources__": {
       "test/继承.sol": {
@@ -119,11 +127,83 @@
       }
     }
   },
-  "test/FundMe.sol": {
+  "homework01/3/ReverseString.sol": {
     "__sources__": {
-      "test/FundMe.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.34;\n/*\n1. 创建一个收款函数\n2. 记录投资人并查看\n3. 在锁定期内，达到目标值，生产商可以提款\n4. 在锁定期内，未达到目标值，投资人在锁定期结束后可以退款\n*/\ncontract FundMe {\n    mapping(address => uint256) public funderToAmount;\n    uint256 constant MINMUM_VALUE = 1 * 10 ** 18; //wei\n    uint256 constant TARGET_VALUE = 10 * 10 ** 18; //wei\n\n    address public owner;\n    address public fundTokenAddr;\n    uint256 deployTime;\n    uint256 lockTime; //锁定期 单位 秒\n\n    bool public fundSuccess = false;\n\n    constructor(uint256 _lockTime) {\n        owner = msg.sender;\n        deployTime = block.timestamp;\n        lockTime = _lockTime;\n    }\n    //收款\n    function fund() external payable {\n        require(block.timestamp < deployTime + lockTime, \"Window Closed\");\n        require(msg.value >= MINMUM_VALUE, \"SEND MORE ETH\");\n        funderToAmount[msg.sender] += msg.value;\n    }\n    //提款\n    function getfund() external windowClosed {\n        require(address(this).balance >= TARGET_VALUE, \"Target is not reached\");\n        require(msg.sender == owner, \"Only owner can call this function\");\n        // 以下这两种写法过时了 编译都过不了\n        // payable(msg.sender).transfer(address(this).balance);\n        // bool success = payable(msg.sender).send(address(this).balance);\n        bool success;\n        (success, ) = payable(msg.sender).call{value: address(this).balance}(\n            \"\"\n        );\n\n        require(success, \"tx failed\");\n        fundSuccess = true;\n    }\n    //退款\n    function refund() external windowClosed {\n        require(address(this).balance < TARGET_VALUE, \"Target is  reached\");\n        require(funderToAmount[msg.sender] != 0, \"No fund for you\");\n\n        funderToAmount[msg.sender] = 0;\n\n        bool success;\n        (success, ) = payable(msg.sender).call{\n            value: funderToAmount[msg.sender]\n        }(\"\");\n\n        require(success, \"tx failed\");\n    }\n\n    //变更所有人\n    function transferOwnership(address newOwner) public onlyOwner {\n        owner = newOwner;\n    }\n\n    modifier windowClosed() {\n        require(block.timestamp >= deployTime + lockTime, \"Window not Closed\");\n        _;\n    }\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only owner can call this function\");\n        _;\n    }\n    // 设置FundToken合约的地址，方便后面权限验证\n    function setFundTokenAddr(address _fundTokenAddr) external onlyOwner {\n        fundTokenAddr = _fundTokenAddr;\n    }\n\n    //给FundToken合约使用，用于更新余额\n    function setFunderToAmount(uint256 _amount) external {\n        require(msg.sender == fundTokenAddr, unicode\"你没有足够的权限\");\n        funderToAmount[msg.sender] = _amount;\n    }\n}\n",
-        "file": "test/FundMe.sol"
+      "homework01/3/ReverseString.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\ncontract ReverseString {\n    function reverseString(\n        string memory str\n    ) public pure returns (string memory) {\n        string memory temp;\n        bytes memory strBytes = bytes(str);\n        for (uint i = 0; i < strBytes.length; i++) {\n            temp = string(\n                abi.encodePacked(temp, strBytes[strBytes.length - 1 - i])\n            );\n        }\n        return temp;\n    }\n\n    function reverseString2(\n        string memory str\n    ) public pure returns (string memory) {\n        bytes memory strBytes = bytes(str);\n        bytes memory temp = new bytes(strBytes.length);\n        for (uint i = 0; i < strBytes.length; i++) {\n            temp[i] = strBytes[strBytes.length - 1 - i];\n        }\n        return string(temp);\n    }\n}\n",
+        "file": "homework01/3/ReverseString.sol"
+      }
+    }
+  },
+  "homework01/1/Voting.sol": {
+    "__sources__": {
+      "homework01/1/Voting.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\ncontract Voting {\n    mapping(string => uint256) public votingToName;\n    string[] public names;\n\n    function vote(string memory name, uint256 votes) public {\n        require(votes != 0, \"votes can not be 0\");\n        if (votingToName[name] == 0) {\n            names.push(name);\n        }\n        votingToName[name] += votes;\n    }\n\n    function getVotes(string memory name) public view returns (uint256) {\n        return votingToName[name];\n    }\n\n    function resetVotes() public {\n        for (uint i; i < names.length; i++) {\n            votingToName[names[i]] = 0;\n        }\n    }\n}\n",
+        "file": "homework01/1/Voting.sol"
+      }
+    }
+  },
+  "homework01/2/ReverseString.sol": {
+    "__sources__": {
+      "homework01/2/ReverseString.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\ncontract ReverseString {\n    function reverseString(\n        string memory str\n    ) public pure returns (string memory) {\n        string memory temp;\n        bytes memory strBytes = bytes(str);\n        for (uint i = 0; i < strBytes.length; i++) {\n            temp = string(\n                abi.encodePacked(temp, strBytes[strBytes.length - 1 - i])\n            );\n        }\n        return temp;\n    }\n\n    function reverseString2(\n        string memory str\n    ) public pure returns (string memory) {\n        bytes memory strBytes = bytes(str);\n        bytes memory temp = new bytes(strBytes.length);\n        for (uint i = 0; i < strBytes.length; i++) {\n            temp[i] = strBytes[strBytes.length - 1 - i];\n        }\n        return string(temp);\n    }\n}\n",
+        "file": "homework01/2/ReverseString.sol"
+      }
+    }
+  },
+  "homework01/3/RomanToInt.sol": {
+    "__sources__": {
+      "homework01/3/RomanToInt.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\ncontract RomanToInt {\n    mapping(bytes1 => uint256) public symbol;\n\n    constructor() {\n        symbol[\"I\"] = 1;\n        symbol[\"V\"] = 5;\n        symbol[\"X\"] = 10;\n        symbol[\"L\"] = 50;\n        symbol[\"C\"] = 100;\n        symbol[\"D\"] = 500;\n        symbol[\"M\"] = 1000;\n    }\n    function romantoInt(string memory str) public view returns (uint256) {\n        uint256 result = 1; //初始化为1 为了IX 上来就要减去1 不然就报错\n        bytes memory strbytes = bytes(str);\n        uint len = strbytes.length;\n        for (uint i = 0; i < len; i++) {\n            if (i < len - 1 && symbol[strbytes[i]] < symbol[strbytes[i + 1]]) {\n                result -= symbol[strbytes[i]];\n            } else {\n                result += symbol[strbytes[i]];\n            }\n        }\n        return result - 1; //最会减去初始化的1\n    }\n}\n",
+        "file": "homework01/3/RomanToInt.sol"
+      }
+    }
+  },
+  "homework01/4/IntToRoman.sol": {
+    "__sources__": {
+      "homework01/4/IntToRoman.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//\npragma solidity ^0.8.24;\n\ncontract IntToRoman {\n    mapping(string => uint256) public symbolvalue;\n    string[13] public keys;\n    constructor() {\n        symbolvalue[\"M\"] = 1000;\n        symbolvalue[\"CM\"] = 900;\n        symbolvalue[\"D\"] = 500;\n        symbolvalue[\"CD\"] = 400;\n        symbolvalue[\"C\"] = 100;\n        symbolvalue[\"XC\"] = 90;\n        symbolvalue[\"L\"] = 50;\n        symbolvalue[\"XL\"] = 40;\n        symbolvalue[\"X\"] = 10;\n        symbolvalue[\"IX\"] = 9;\n        symbolvalue[\"V\"] = 5;\n        symbolvalue[\"IV\"] = 4;\n        symbolvalue[\"I\"] = 1;\n        keys[0] = \"M\";\n        keys[1] = \"CM\";\n        keys[2] = \"D\";\n        keys[3] = \"CD\";\n        keys[4] = \"C\";\n        keys[5] = \"XC\";\n        keys[6] = \"L\";\n        keys[7] = \"XL\";\n        keys[8] = \"X\";\n        keys[9] = \"IX\";\n        keys[10] = \"V\";\n        keys[11] = \"IV\";\n        keys[12] = \"I\";\n    }\n\n    function toRoman(uint256 num) public view returns (string memory) {\n        string memory result;\n        for (uint i = 0; i < keys.length; i++) {\n            uint256 v = symbolvalue[keys[i]];\n            uint256 count = num / v;\n            uint256 less = num % v;\n\n            if (count > 0) {\n                for (uint256 k = 0; k < count; k++) {\n                    result = string.concat(result, keys[i]);\n                }\n                if (less == 0) {\n                    break;\n                }\n                num = less;\n            }\n        }\n        return result;\n    }\n}\n",
+        "file": "homework01/4/IntToRoman.sol"
+      }
+    }
+  },
+  "homework01/5/IntToRoman.sol": {
+    "__sources__": {
+      "homework01/5/IntToRoman.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//\npragma solidity ^0.8.24;\n\ncontract IntToRoman {\n    mapping(string => uint256) public symbolvalue;\n    string[13] public keys;\n    constructor() {\n        symbolvalue[\"M\"] = 1000;\n        symbolvalue[\"CM\"] = 900;\n        symbolvalue[\"D\"] = 500;\n        symbolvalue[\"CD\"] = 400;\n        symbolvalue[\"C\"] = 100;\n        symbolvalue[\"XC\"] = 90;\n        symbolvalue[\"L\"] = 50;\n        symbolvalue[\"XL\"] = 40;\n        symbolvalue[\"X\"] = 10;\n        symbolvalue[\"IX\"] = 9;\n        symbolvalue[\"V\"] = 5;\n        symbolvalue[\"IV\"] = 4;\n        symbolvalue[\"I\"] = 1;\n        keys[0] = \"M\";\n        keys[1] = \"CM\";\n        keys[2] = \"D\";\n        keys[3] = \"CD\";\n        keys[4] = \"C\";\n        keys[5] = \"XC\";\n        keys[6] = \"L\";\n        keys[7] = \"XL\";\n        keys[8] = \"X\";\n        keys[9] = \"IX\";\n        keys[10] = \"V\";\n        keys[11] = \"IV\";\n        keys[12] = \"I\";\n    }\n\n    function toRoman(uint256 num) public view returns (string memory) {\n        string memory result;\n        for (uint i = 0; i < keys.length; i++) {\n            uint256 v = symbolvalue[keys[i]];\n            uint256 count = num / v;\n            uint256 less = num % v;\n\n            if (count > 0) {\n                for (uint256 k = 0; k < count; k++) {\n                    result = string.concat(result, keys[i]);\n                }\n                if (less == 0) {\n                    break;\n                }\n                num = less;\n            }\n        }\n        return result;\n    }\n}\n",
+        "file": "homework01/5/IntToRoman.sol"
+      }
+    }
+  },
+  "homework01/6/IntToRoman1.sol": {
+    "__sources__": {
+      "homework01/6/IntToRoman1.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//\npragma solidity ^0.8.24;\n\ncontract IntToRoman {\n    mapping(string => uint256) public symbolvalue;\n    string[13] public keys;\n    constructor() {\n        symbolvalue[\"M\"] = 1000;\n        symbolvalue[\"CM\"] = 900;\n        symbolvalue[\"D\"] = 500;\n        symbolvalue[\"CD\"] = 400;\n        symbolvalue[\"C\"] = 100;\n        symbolvalue[\"XC\"] = 90;\n        symbolvalue[\"L\"] = 50;\n        symbolvalue[\"XL\"] = 40;\n        symbolvalue[\"X\"] = 10;\n        symbolvalue[\"IX\"] = 9;\n        symbolvalue[\"V\"] = 5;\n        symbolvalue[\"IV\"] = 4;\n        symbolvalue[\"I\"] = 1;\n        keys[0] = \"M\";\n        keys[1] = \"CM\";\n        keys[2] = \"D\";\n        keys[3] = \"CD\";\n        keys[4] = \"C\";\n        keys[5] = \"XC\";\n        keys[6] = \"L\";\n        keys[7] = \"XL\";\n        keys[8] = \"X\";\n        keys[9] = \"IX\";\n        keys[10] = \"V\";\n        keys[11] = \"IV\";\n        keys[12] = \"I\";\n    }\n\n    function toRoman(uint256 num) public view returns (string memory) {\n        string memory result;\n        for (uint i = 0; i < keys.length; i++) {\n            uint256 v = symbolvalue[keys[i]];\n            uint256 count = num / v;\n            uint256 less = num % v;\n\n            if (count > 0) {\n                for (uint256 k = 0; k < count; k++) {\n                    result = string.concat(result, keys[i]);\n                }\n                if (less == 0) {\n                    break;\n                }\n                num = less;\n            }\n        }\n        return result;\n    }\n}\n",
+        "file": "homework01/6/IntToRoman1.sol"
+      }
+    }
+  },
+  "homework01/6/IntToRoman.sol": {
+    "__sources__": {
+      "homework01/6/IntToRoman.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//\npragma solidity ^0.8.24;\n\ncontract IntToRoman {\n    mapping(string => uint256) public symbolvalue;\n    string[13] public keys;\n    constructor() {\n        symbolvalue[\"M\"] = 1000;\n        symbolvalue[\"CM\"] = 900;\n        symbolvalue[\"D\"] = 500;\n        symbolvalue[\"CD\"] = 400;\n        symbolvalue[\"C\"] = 100;\n        symbolvalue[\"XC\"] = 90;\n        symbolvalue[\"L\"] = 50;\n        symbolvalue[\"XL\"] = 40;\n        symbolvalue[\"X\"] = 10;\n        symbolvalue[\"IX\"] = 9;\n        symbolvalue[\"V\"] = 5;\n        symbolvalue[\"IV\"] = 4;\n        symbolvalue[\"I\"] = 1;\n        keys[0] = \"M\";\n        keys[1] = \"CM\";\n        keys[2] = \"D\";\n        keys[3] = \"CD\";\n        keys[4] = \"C\";\n        keys[5] = \"XC\";\n        keys[6] = \"L\";\n        keys[7] = \"XL\";\n        keys[8] = \"X\";\n        keys[9] = \"IX\";\n        keys[10] = \"V\";\n        keys[11] = \"IV\";\n        keys[12] = \"I\";\n    }\n\n    function toRoman(uint256 num) public view returns (string memory) {\n        string memory result;\n        for (uint i = 0; i < keys.length; i++) {\n            uint256 v = symbolvalue[keys[i]];\n            uint256 count = num / v;\n            uint256 less = num % v;\n\n            if (count > 0) {\n                for (uint256 k = 0; k < count; k++) {\n                    result = string.concat(result, keys[i]);\n                }\n                if (less == 0) {\n                    break;\n                }\n                num = less;\n            }\n        }\n        return result;\n    }\n}\n",
+        "file": "homework01/6/IntToRoman.sol"
+      }
+    }
+  },
+  "homework01/5/MergeArray.sol": {
+    "__sources__": {
+      "homework01/5/MergeArray.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//将两个有序数组合并为一个有序数组\npragma solidity ^0.8.24;\n\ncontract MergeArray {\n    function processArray(\n        uint[] memory dataA,\n        uint[] memory dataB\n    ) public pure returns (uint[] memory) {\n        uint lenA = dataA.length;\n        uint lenB = dataB.length;\n        uint256[] memory result = new uint256[](lenA + lenB);\n        // 处理逻辑\n        uint256 a = 0;\n        uint256 b = 0;\n        uint256 c = 0;\n        for (;;) {\n            if (a == lenA && b != lenB) {\n                result[c] = dataB[b];\n                b++;\n            } else if (a != lenA && b == lenB) {\n                result[c] = dataA[a];\n                a++;\n            } else if (dataA[a] < dataB[b]) {\n                result[c] = dataA[a];\n                a++;\n            } else {\n                result[c] = dataB[b];\n                b++;\n            }\n            c++;\n            if (a == lenA && b == lenB) {\n                break;\n            }\n        }\n        return result;\n    }\n\n    //双指针归并算法\n    function processArray2(\n        uint[] memory dataA,\n        uint[] memory dataB\n    ) public pure returns (uint[] memory) {\n        uint lenA = dataA.length;\n        uint lenB = dataB.length;\n        uint256[] memory result = new uint256[](lenA + lenB);\n        // 处理逻辑\n        uint256 a = 0;\n        uint256 b = 0;\n        uint256 c = 0;\n        while (a < lenA && b < lenB) {\n            if (dataA[a] < dataB[b]) {\n                result[c] = dataA[a];\n                a++;\n            } else {\n                result[c] = dataB[b];\n                b++;\n            }\n            c++;\n        }\n        while (a < lenA) {\n            result[c] = dataA[a];\n            a++;\n\n            c++;\n        }\n        while (b < lenB) {\n            result[c] = dataB[b];\n            b++;\n\n            c++;\n        }\n        return result;\n    }\n}\n",
+        "file": "homework01/5/MergeArray.sol"
+      }
+    }
+  },
+  "homework01/6/BinarySeach.sol": {
+    "__sources__": {
+      "homework01/6/BinarySeach.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n//二分查找 (Binary Search) 在一个有序数组中查找目标值。\npragma solidity ^0.8.24;\n\ncontract BinarySearch {\n    function search(\n        uint256[] memory arr,\n        uint256 target\n    ) public pure returns (uint256) {\n        uint256 left = 0;\n        uint256 right = arr.length; // 右边界设为长度，表示开区间 [left, right)\n\n        while (left < right) {\n            // 防止溢出的中位数计算\n            uint256 mid = left + (right - left) / 2;\n\n            if (arr[mid] == target) {\n                return mid;\n            } else if (arr[mid] < target) {\n                left = mid + 1;\n            } else {\n                right = mid;\n            }\n        }\n\n        return type(uint256).max; // 表示未找到\n    }\n}\n",
+        "file": "homework01/6/BinarySeach.sol"
       }
     }
   }
